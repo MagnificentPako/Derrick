@@ -1,0 +1,12 @@
+:- module(oauth_options, [oauth_options/1]).
+
+oauth_options([ host('www.pathofexile.com')
+              , auth_path('/oauth/authorize')
+              , token_path('/oauth/token')
+              , client_id('client_id')
+              , client_secret('client_secret')
+              , redirect_uri('http://localhost/redirect')
+              , scope('account:profile account:stashes')
+              , user_agent('OAuth your_application/0.1 (contact: admin@local.tld) StrictMode')
+              , api_host('api.pathofexile.com')
+              ]).
