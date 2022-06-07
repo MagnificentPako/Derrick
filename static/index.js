@@ -26,6 +26,11 @@
 
 window.onload = () => {
     var session = pl.create()
+    fetch("/static/anoints.pl")
+        .then(response => response.text())
+        .then(program => session.consult(program, {
+            success: () => {}
+        }))
     fetch("/static/app.pl")
         .then(response => response.text())
         .then(program => session.consult(program, {
