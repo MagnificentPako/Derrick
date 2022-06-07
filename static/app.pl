@@ -65,11 +65,16 @@ is_anointed_jewelry(Item) :-
     (atom_concat(_, 'Amulet', Type); 
      atom_concat(_, 'Ring', Type)).
 
+useful_oil(Oil) :-
+    oil_gte(Oil, amber).
+
 is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
     last(Enchantment, Enchants),
-    write(Enchantment),
-    true.
+    anoint(Oils, Enchantment),
+    include(useful_oil, Oils, UsefulOils),
+    length(UsefulOils, L),
+    L > 0.
 
 on_select(Event) :-
     event_property(Event, target, Target),
