@@ -76,6 +76,7 @@ is_useful_anoint(Item) :-
     anoint(Oils, Enchant),
     write(Oils),
     write(Enchant),
+    write(Item),
     include(useful_oil, Oils, UsefulOils),
     length(UsefulOils, L),
     L > 0.
