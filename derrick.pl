@@ -23,6 +23,7 @@ http:location(static, '/static', []).
 :- http_handler(static('index.js'),     http_reply_file('static/index.js',  []), []).
 :- http_handler(static('tau.js'),       http_reply_file('static/tau.js',    []), []).
 :- http_handler(static('app.pl'),       http_reply_file('static/app.pl',    []), []).
+:- http_handler(static('anoints.pl'),   http_reply_file('static/anoints.pl',[]), []).
 :- http_handler(static('style.css'),    http_reply_file('static/style.css', []), []).
 
 :- http_handler(root('stashes'),         stashes_handler, []).
