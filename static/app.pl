@@ -24,14 +24,11 @@ reset_stash_container :-
 
 item_name(Item, Name) :-
     member((name-ItemName)),
-    string_length(ItemName, L),
-    L > 0,
-    !,
-    Name = ItemName.
-
-item_name(Item, Name) :-
-    member((baseType-Type)),
-    Name = Type.
+    member((baseType-Type))
+    ( string_length(ItemName, L)
+    , L > 0)
+    -> Name = ItemName;
+       Name = Type.
 
 add_item_to_container(Item) :-
     get_by_id(stash_container, Container),
