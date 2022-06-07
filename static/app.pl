@@ -25,10 +25,11 @@ reset_stash_container :-
 item_name(Item, Name) :-
     member((name-ItemName), Item),
     member((baseType-Type), Item),
-    ( string_length(ItemName, L)
+    atom_codes(ItemName, INL),
+    (( length(INL, L)
     , L > 0)
     -> Name = ItemName;
-       Name = Type.
+       Name = Type).
 
 add_item_to_container(Item) :-
     get_by_id(stash_container, Container),
@@ -41,7 +42,7 @@ add_item_to_container(Item) :-
     %member((x-X), Item),
     %member((y-Y), Item),
     %fmts(ItemText, '~w at position ~wx, ~wy.', [ItemName, X, Y]),
-    html(ItemTxt, Item),
+    html(ItemTxt, ItemName),
     append_child(ItemElement, ItemImg),
     append_child(ItemElement, ItemTxt),
     append_child(Container, ItemElement).
