@@ -75,9 +75,9 @@ is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
     last(Enchantment, Enchants),
     anoint(Oils, Enchantment),
-    include(useful_oil, Oils, UsefulOils),
-    length(UsefulOils, L),
-    L > 0.
+    write(Oils),
+    write(Enchantment),
+    true.
 
 on_select(Event) :-
     event_property(Event, target, Target),
