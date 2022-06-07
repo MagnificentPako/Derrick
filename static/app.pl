@@ -4,6 +4,9 @@
 :- use_module(library(format)).
 :- use_module(library(fix_this_shit)).
 
+fmts(String, Fs, Arguments) :-
+    phrase(format_(Fs, Arguments), String).
+
 generate_ui :-
     create(select, Select),
     set_attr(Select, id, 'stash_id'),
@@ -19,6 +22,17 @@ reset_stash_container :-
     get_by_id(stash_container, StashContainer),
     forall(parent_of(Child, StashContainer), remove(Child)).
 
+item_name(Item, Name) :-
+    member((name-ItemName)),
+    string_length(ItemName, L),
+    L > 0,
+    !,
+    Name = ItemName.
+
+item_name(Item, Name) :-
+    member((baseType-Type)),
+    Name = Type.
+
 add_item_to_container(Item) :-
     get_by_id(stash_container, Container),
     member((icon-Icon), Item),
@@ -26,7 +40,11 @@ add_item_to_container(Item) :-
     create(img, ItemImg),
     set_attr(ItemImg, src, Icon),
     create(p, ItemTxt),
-    html(ItemTxt, Item),
+    item_name(Item, ItemName),
+    member((x-X), Item),
+    member((y-Y), Item),
+    fmts(ItemText, '~w at position ~wx, ~wy.', [ItemName, X, Y]),
+    html(ItemTxt, ItemText),
     append_child(ItemElement, ItemImg),
     append_child(ItemElement, ItemTxt),
     append_child(Container, ItemElement).
