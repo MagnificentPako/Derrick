@@ -40,8 +40,8 @@ add_option(Select, Tab) :-
     append_child(Select, Option).
 
 is_anointed_jewelry(Item) :-
-    %member((baseType-Type), Item),
-    member((enchantMods-_), Item),
+    member((baseType-Type), Item),
+    %member((enchantMods-_), Item),
     (atom_concat(_, 'Amulet', Type); 
      atom_concat(_, 'Ring', Type)).
 
