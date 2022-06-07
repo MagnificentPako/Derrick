@@ -45,7 +45,7 @@ add_item_to_container(Item) :-
     member((enchantMods-Enchants), Item),
     last(Enchants, Enchant),
     anoint(Oils, Enchant),
-    fmts(ItemText, "~w at position ~wx, ~wy.\nYields: ~w", [ItemName, X, Y, Oils],
+    fmts(ItemText, "~w at position ~wx, ~wy.\nYields: ~w", [ItemName, X, Y, Oils]),
     html(ItemTxt, ItemText),
     append_child(ItemElement, ItemImg),
     append_child(ItemElement, ItemTxt),
