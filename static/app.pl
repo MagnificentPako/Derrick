@@ -66,7 +66,6 @@ is_anointed_jewelry(Item) :-
      atom_concat(_, 'Ring', Type)).
 
 useful_oil(Oil) :-
-    write(Oil),
     oil(Oil, N),
     oil(amber, M),
     N >= M.
@@ -75,6 +74,7 @@ is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
     last(Enchantments, Enchant),
     anoint(Oils, Enchant),
+    write(Oils),
     include(useful_oil, Oils, UsefulOils),
     length(UsefulOils, L),
     L > 0.
