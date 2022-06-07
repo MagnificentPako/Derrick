@@ -23,8 +23,8 @@ reset_stash_container :-
     forall(parent_of(Child, StashContainer), remove(Child)).
 
 item_name(Item, Name) :-
-    member((name-ItemName)),
-    member((baseType-Type))
+    member((name-ItemName), Item),
+    member((baseType-Type), Item),
     ( string_length(ItemName, L)
     , L > 0)
     -> Name = ItemName;
