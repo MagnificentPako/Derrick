@@ -42,7 +42,10 @@ add_item_to_container(Item) :-
     item_name(Item, ItemName),
     member((x-X), Item),
     member((y-Y), Item),
-    fmts(ItemText, "~w at position ~wx, ~wy.", [ItemName, X, Y]),
+    member((enchantMods-Enchants), Item),
+    last(Enchants, Enchant),
+    anoint(Oils, Enchant),
+    fmts(ItemText, "~w at position ~wx, ~wy.\nYields: ~w", [ItemName, X, Y, Oils],
     html(ItemTxt, ItemText),
     append_child(ItemElement, ItemImg),
     append_child(ItemElement, ItemTxt),
@@ -58,17 +61,16 @@ add_option(Select, Tab) :-
 
 is_anointed_jewelry(Item) :-
     member((baseType-Type), Item),
-    %member((enchantMods-_), Item),
+    member((enchantMods-_), Item),
     (atom_concat(_, 'Amulet', Type); 
      atom_concat(_, 'Ring', Type)).
 
 is_useful_anoint(Item) :-
-    true.
-    %member((enchantMods-Enchants), Item),
-    %member(Enchantment, Enchants),
-    %anoint(Oils, Enchantment),
-    %member(Oil, Oils),
-    %oil_gte(Oil, opalscent).
+    member((enchantMods-Enchants), Item),
+    member(Enchantment, Enchants),
+    anoint(Oils, Enchantment),
+    member(Oil, Oils),
+    oil_gte(Oil, opalscent).
 
 on_select(Event) :-
     event_property(Event, target, Target),
