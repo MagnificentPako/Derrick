@@ -50,14 +50,14 @@ stashes_handler(_Request) :-
     logged_in, !,
     token(Token),
     oauth_options(OOptions),
-    oauth_get(OOptions, Token, '/stash/Archnemesis', Res),
+    oauth_get(OOptions, Token, '/stash/Sentinel', Res),
     reply_json(Res).
 
 stash_handler(StashID, _Request) :-
     logged_in, !,
     token(Token),
     oauth_options(OOptions),
-    format(string(ReqPath), '/stash/Archnemesis/~w', [StashID]),
+    format(string(ReqPath), '/stash/Sentinel/~w', [StashID]),
     oauth_get(OOptions, Token, ReqPath, Res),
     reply_json(Res).
 

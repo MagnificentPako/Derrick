@@ -45,6 +45,14 @@ is_anointed_jewelry(Item) :-
     (atom_concat(_, 'Amulet', Type); 
      atom_concat(_, 'Ring', Type)).
 
+is_useful_anoint(Item) :-
+    true.
+    %member((enchantMods-Enchants), Item),
+    %member(Enchantment, Enchants),
+    %anoint(Oils, Enchantment),
+    %member(Oil, Oils),
+    %oil_gte(Oil, opalscent).
+
 on_select(Event) :-
     event_property(Event, target, Target),
     fixed_for_you(Target, value, Value),
@@ -53,7 +61,8 @@ on_select(Event) :-
     json_prolog(Res, DataRaw),
     member((stash-Stash), DataRaw),
     member((items-Items), Stash),
-    include(is_anointed_jewelry, Items, FilteredItems),
+    include(is_anointed_jewelry, Items, FilteredJewelry),
+    include(is_useful_anoint, FilteredJewelry, FilteredAnoints),
     reset_stash_container,
     forall(member(X, FilteredItems), add_item_to_container(X)).
 
