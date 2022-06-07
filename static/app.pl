@@ -73,10 +73,10 @@ useful_oil(Oil) :-
 
 is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
-    last(Enchantment, Enchants),
-    anoint(Oils, Enchantment),
+    last(Enchantments, Enchant),
+    anoint(Oils, Enchant),
     write(Oils),
-    write(Enchantment),
+    write(Enchant),
     true.
 
 on_select(Event) :-
