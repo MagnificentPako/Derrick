@@ -64,7 +64,7 @@ on_select(Event) :-
     include(is_anointed_jewelry, Items, FilteredJewelry),
     include(is_useful_anoint, FilteredJewelry, FilteredAnoints),
     reset_stash_container,
-    forall(member(X, FilteredItems), add_item_to_container(X)).
+    forall(member(X, FilteredAnoints), add_item_to_container(X)).
 
 init :- 
     generate_ui,
