@@ -72,7 +72,7 @@ useful_oil(Oil) :-
 
 is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
-    last(Enchantments, Enchant),
+    member(Enchant, Enchants),
     anoint(Oils, Enchant),
     !,
     write(Oils),
