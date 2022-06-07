@@ -30,8 +30,8 @@ http:location(static, '/static', []).
 :- http_handler(root(stashes/StashID),   stash_handler(StashID), []).
 :- http_handler(root('redirect'),        redirect_handler, []).
 
-logged_in :- http_current_session(_SessionId, logged_in).
-token(Token) :- http_current_session(_SessionId, token(Token)).
+logged_in :- http_in_session(SID), http_current_session(SID, logged_in).
+token(Token) :- http_in_session(SID), http_current_session(SID, token(Token)).
 
 index_handler(Request) :-
     \+ logged_in, !,
@@ -69,8 +69,8 @@ redirect_handler(Request) :-
     ]),
     oauth_options(OOptions),
     fetch_token(OOptions, Code, State, Token),
-    http_current_session(SessionId, _),
-    http_session_assert(logged_in, SessionId),
-    http_session_assert(token(Token), SessionId),
+    http_in_session(SID),
+    http_session_assert(logged_in, SID),
+    http_session_assert(token(Token), SID),
     http_redirect(moved_temporary, '/', Request).
     
