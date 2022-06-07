@@ -70,7 +70,7 @@ is_useful_anoint(Item) :-
     member(Enchantment, Enchants),
     anoint(Oils, Enchantment),
     member(Oil, Oils),
-    oil_gte(Oil, opalscent).
+    oil_gte(Oil, sepia).
 
 on_select(Event) :-
     event_property(Event, target, Target),
