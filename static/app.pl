@@ -72,7 +72,7 @@ is_useful_anoint(Item) :-
     write(Enchantment),
     write(Oils),
     member(Oil, Oils),
-    oil_gte(Oil, sepia).
+    true.
 
 on_select(Event) :-
     event_property(Event, target, Target),
