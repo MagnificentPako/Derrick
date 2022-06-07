@@ -5,7 +5,8 @@
 :- use_module(library(fix_this_shit)).
 
 fmts(String, Fs, Arguments) :-
-    phrase(format_(Fs, Arguments), String).
+    phrase(format_(Fs, Arguments), Cs),
+    atomic_list_concat(Cs, String).
 
 generate_ui :-
     create(select, Select),
