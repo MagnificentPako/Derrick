@@ -12,11 +12,6 @@ oil(opalescent, 10).
 oil(silver, 11).
 oil(golden, 12).
 
-oil_gte(Oil, Comp) :-
-    oil(Comp, N),
-    oil(Oil, M),
-    M >= N.
-
 anoint([clear,clear], 'Your Chilling Towers deal 25% increased Damage').
 anoint([indigo,violet], 'Your Meteor Towers create Burning Ground for 3 seconds on Hit').
 anoint([clear,verdant], 'Your Meteor Towers deal 25% increased Damage').
