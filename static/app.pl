@@ -43,8 +43,8 @@ add_item_to_container(Item) :-
     item_name(Item, ItemName),
     member((x-X), Item),
     member((y-Y), Item),
-    fmts(ItemText, '~w at position ~wx, ~wy.', [ItemName, X, Y]),
-    html(ItemTxt, ItemText),
+    %fmts(ItemText, '~w at position ~wx, ~wy.', [ItemName, X, Y]),
+    html(ItemTxt, ItemName),
     append_child(ItemElement, ItemImg),
     append_child(ItemElement, ItemTxt),
     append_child(Container, ItemElement).
