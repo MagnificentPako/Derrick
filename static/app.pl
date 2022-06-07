@@ -67,7 +67,7 @@ is_anointed_jewelry(Item) :-
 
 useful_oil(Oil) :-
     oil(Oil, N),
-    oil(opalescent, M),
+    oil(amber, M),
     N >= M.
 
 is_useful_anoint(Item) :-
