@@ -69,7 +69,7 @@ useful_oil(Oil) :-
     write(Oil),
     oil(Oil, N),
     oil(amber, M),
-    n >= M.
+    N >= M.
 
 is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
