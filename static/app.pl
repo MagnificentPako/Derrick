@@ -67,8 +67,10 @@ is_anointed_jewelry(Item) :-
 
 is_useful_anoint(Item) :-
     member((enchantMods-Enchants), Item),
-    member(Enchantment, Enchants),
+    last(Enchantment, Enchants),
     anoint(Oils, Enchantment),
+    write(Enchantment),
+    write(Oils),
     member(Oil, Oils),
     oil_gte(Oil, sepia).
 
